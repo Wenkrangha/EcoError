@@ -88,6 +88,7 @@ public class boarditem {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("§7我已经阅读完了公告，我需要关闭界面");
         arrayList.add("§7在左边获取图册和相机，开启你的活动之旅吧！");
+        arrayList.add("§7（请先点击左边的两个按钮）");
         itemMeta.setLore(arrayList);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
