@@ -1,6 +1,7 @@
 package com.wenkrang.ecoError;
 
 import com.wenkrang.ecoError.command.EcoCommand;
+import com.wenkrang.ecoError.event.board.BoardGuiClick;
 import com.wenkrang.ecoError.event.board.BoardInvClose;
 import com.wenkrang.ecoError.event.board.BoardPlayerJoin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +17,7 @@ public final class EcoError extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new BoardPlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BoardInvClose(), this);
+        getServer().getPluginManager().registerEvents(new BoardGuiClick(), this);
 
         File file = new File("./plugins/EcoError/player/");
         file.mkdirs();
