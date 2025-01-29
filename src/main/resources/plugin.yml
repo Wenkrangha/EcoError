@@ -2,3 +2,7 @@ name: EcoError
 version: '1.0-SNAPSHOT'
 main: com.wenkrang.ecoError.EcoError
 api-version: '1.21'
+commands:
+  ee:
+    description: EcoError 神秘年兽的主命令
+    usage: /ee
