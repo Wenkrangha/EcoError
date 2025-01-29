@@ -1,0 +1,4 @@
+name: EcoError
+version: '1.0-SNAPSHOT'
+main: com.wenkrang.ecoError.EcoError
+api-version: '1.21'
