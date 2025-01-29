@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class boarditem {
+public class BoardItem {
     //背景
     public static ItemStack background_item() {
         ItemStack itemStack = new ItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE);
@@ -17,7 +17,7 @@ public class boarditem {
         return itemStack;
     }
     //背景
-    public static ItemStack borad_head() {
+    public static ItemStack boardHead() {
         ItemStack itemStack = new ItemStack(Material.BIRCH_SIGN);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setItemName("§f紧急§9公告");

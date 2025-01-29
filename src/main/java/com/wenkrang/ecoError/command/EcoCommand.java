@@ -1,14 +1,19 @@
 package com.wenkrang.ecoError.command;
 
+import com.wenkrang.ecoError.gui.board.BoardGUI;
+import com.wenkrang.ecoError.item.PublicItem;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EcoCommand implements CommandExecutor, TabCompleter {
-    private static String helpText = 
+    private static final String HELP_TEXT =
 """
 §7[!]  §4EcoError - EcoError §7正在运行
  §4| §7help      帮助列表
@@ -16,28 +21,59 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
  §4| §7camera    获取相机
  §4| §7announce  查看公告
 """;
+    @SuppressWarnings("all")
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) { /*todo*/
-        if ((strings.length == 0 ? "help" : strings[0]).equals("help")) {
-            helpText.lines().forEach(commandSender::sendMessage);
+        if ((strings.length == 0 ? "help" : strings[0]).equalsIgnoreCase("help")) {
+            HELP_TEXT.lines().forEach(commandSender::sendMessage);
             return true;
-        } else switch (strings[0]) {
-            case "board":
-                return true;
-            case "camera":
-                return true;
-            case "announce":
-                return true;
-            default:
+        } else return switch (strings[0].toLowerCase()) {
+            case "board" -> switch (commandSender) {
+                case Player player -> {
+                    player.getInventory().addItem(PublicItem.get_book());
+                    yield true;
+                }
+                case CommandSender cs1 -> {
+                    cs1.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    yield false;
+                }
+            };
+            case "camera" -> switch (commandSender) {
+                case Player player -> {
+                    player.getInventory().addItem(PublicItem.get_camara());
+                    yield true;
+                }
+                case CommandSender cs1 -> {
+                    cs1.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    yield false;
+                }
+            };
+            case "announce" -> {
+                try {
+                    BoardGUI.openboard((Player)commandSender);
+                    yield true;
+                } catch (ClassCastException ignored) {
+                    commandSender.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    yield false;
+                } catch (IOException | InvalidConfigurationException e) {
+                    commandSender.sendMessage("§7[!]出错了！" + e.getMessage());
+                    for (var i = 0; i < 3; i++) {
+                        commandSender.sendMessage("§7[!]" + e.getStackTrace()[i].toString());
+                    }
+                    yield false;
+                }
+            }
+            default -> {
                 commandSender.sendMessage("§7[!]未知的操作" + strings[0]);
-                helpText.lines().forEach(commandSender::sendMessage);
-                return false;
-        }
+                HELP_TEXT.lines().forEach(commandSender::sendMessage);
+                yield false;
+            }
+        };
     }
 
+    @SuppressWarnings("all")
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
         return strings.length == 0 ? List.of("announce", "board", "camera", "help") : List.of("没了......");
     }
 }
-//你做一下命令，和boatfly 一样的命令提示，你先做吧，我先做一下图册和公告

@@ -1,13 +1,12 @@
 package com.wenkrang.ecoError.event.board;
 
-import com.wenkrang.ecoError.gui.board.boardgui;
+import com.wenkrang.ecoError.gui.board.BoardGUI;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class BoardPlayerJoin implements Listener {
         }
 
         if (!(yamlConfiguration.getString("1").equalsIgnoreCase("yes") && yamlConfiguration.getString("2").equalsIgnoreCase("yes") && yamlConfiguration.getString("3").equalsIgnoreCase("yes") && yamlConfiguration.getString("4").equalsIgnoreCase("yes"))) {
-            boardgui.openboard((Player) event.getPlayer());
+            BoardGUI.openboard((Player) event.getPlayer());
         }
     }
 }
