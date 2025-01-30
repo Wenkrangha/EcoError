@@ -30,7 +30,7 @@ public class BoardGuiClick implements Listener {
             }
             if (event.getCurrentItem().equals(BoardItem.get_camara())) {
                 yamlConfiguration.set("3","yes");
-                event.getView().getPlayer().getInventory().addItem(PublicItem.get_camara());
+                event.getView().getPlayer().getInventory().addItem(PublicItem.get_camara((Player) event.getView().getPlayer()));
             }
             if (event.getCurrentItem().equals(BoardItem.getsure()) && yamlConfiguration.getString("1").equalsIgnoreCase("yes") && yamlConfiguration.getString("2").equalsIgnoreCase("yes") && yamlConfiguration.getString("3").equalsIgnoreCase("yes")) {
                 yamlConfiguration.set("4","yes");
