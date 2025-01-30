@@ -15,7 +15,9 @@ import java.io.IOException;
 public class BoardGuiClick implements Listener {
     @EventHandler
     public static void onclick(InventoryClickEvent event) throws IOException, InvalidConfigurationException {
+
         if (event.getView().getTitle().equalsIgnoreCase("紧急公告-神秘年兽")){
+            event.setCancelled(true);
             YamlConfiguration yamlConfiguration = new YamlConfiguration();
 
             yamlConfiguration.load("./plugins/EcoError/player/" + event.getView().getPlayer().getUniqueId().toString() + ".yaml");
@@ -40,7 +42,7 @@ public class BoardGuiClick implements Listener {
                 BoardGUI.openboard((Player) event.getView().getPlayer());
             }
 
-            event.setCancelled(true);
+
         }
     }
 }

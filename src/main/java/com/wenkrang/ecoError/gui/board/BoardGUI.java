@@ -1,7 +1,6 @@
 package com.wenkrang.ecoError.gui.board;
 
-import com.wenkrang.ecoError.EcoError;
-import com.wenkrang.ecoError.lib.Update;
+import com.wenkrang.ecoError.lib.board.Update;
 import com.wenkrang.ecoError.item.BoardItem;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -9,7 +8,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 import java.util.ArrayList;
