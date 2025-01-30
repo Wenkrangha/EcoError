@@ -37,7 +37,7 @@ public class Task1 extends BaseTask {
 
     @EventHandler
     public void onTask12Complete(@Nonnull PlayerInteractEvent event) {
-        if (event.getItem() == PublicItem.get_camara()) {
+        if (event.getItem() == PublicItem.get_camara(event.getPlayer())) {
             if (event.getPlayer()
                     .getNearbyEntities(8, 8, 8)
                     .stream().anyMatch(i -> i.getType() == EntityType.ITEM

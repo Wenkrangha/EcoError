@@ -1,5 +1,6 @@
 package com.wenkrang.ecoError.lib.board;
 
+import com.wenkrang.ecoError.lib.TaskCentre.CraftTask;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,5 +11,6 @@ public class Update {
         for (int i = 12;i - 12 < arrayList.size();i++) {
             inventory.setItem(i, arrayList.get(i - 12));
         }
+
     }
 }
