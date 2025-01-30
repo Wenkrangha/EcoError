@@ -34,7 +34,7 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
                     yield true;
                 }
                 case CommandSender cs1 -> {
-                    cs1.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    cs1.sendMessage("§4[!]§f 只有玩家才能使用这个命令");
                     yield false;
                 }
             };
@@ -44,7 +44,7 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
                     yield true;
                 }
                 case CommandSender cs1 -> {
-                    cs1.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    cs1.sendMessage("§4[!]§f 只有玩家才能使用这个命令");
                     yield false;
                 }
             };
@@ -53,18 +53,18 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
                     BoardGUI.openboard((Player)commandSender);
                     yield true;
                 } catch (ClassCastException ignored) {
-                    commandSender.sendMessage("§7[!]只有玩家才能使用这个命令");
+                    commandSender.sendMessage("§4[!]§f 只有玩家才能使用这个命令");
                     yield false;
                 } catch (IOException | InvalidConfigurationException e) {
-                    commandSender.sendMessage("§7[!]出错了！" + e.getMessage());
+                    commandSender.sendMessage("§4[!]§f 出错了！" + e.getMessage());
                     for (var i = 0; i < 3; i++) {
-                        commandSender.sendMessage("§7[!]" + e.getStackTrace()[i].toString());
+                        commandSender.sendMessage("§4[!]§f " + e.getStackTrace()[i].toString());
                     }
                     yield false;
                 }
             }
             default -> {
-                commandSender.sendMessage("§7[!]未知的操作" + strings[0]);
+                commandSender.sendMessage("§4[!]§f 未知的操作" + strings[0]);
                 HELP_TEXT.lines().forEach(commandSender::sendMessage);
                 yield false;
             }
@@ -74,6 +74,6 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
     @SuppressWarnings("all")
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-        return strings.length == 0 ? List.of("announce", "board", "camera", "help") : List.of("没了......");
+        return List.of("announce", "board", "camera", "help");
     }
 }
