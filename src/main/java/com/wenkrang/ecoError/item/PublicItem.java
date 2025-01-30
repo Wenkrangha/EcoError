@@ -6,7 +6,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class publicitem {
+@SuppressWarnings("all")
+public class PublicItem {
     public static ItemStack get_book() {
         ItemStack itemStack = new ItemStack(Material.WRITABLE_BOOK);
         ItemMeta itemMeta = itemStack.getItemMeta();

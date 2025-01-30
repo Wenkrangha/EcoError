@@ -7,13 +7,14 @@ import com.wenkrang.ecoError.event.board.BoardPlayerJoin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Objects;
 
 public final class EcoError extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        this.getCommand("ee").setExecutor(new EcoCommand());
+        Objects.requireNonNull(this.getCommand("ee")).setExecutor(new EcoCommand());
 
         getServer().getPluginManager().registerEvents(new BoardPlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BoardInvClose(), this);
