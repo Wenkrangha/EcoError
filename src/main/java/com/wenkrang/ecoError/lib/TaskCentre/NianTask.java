@@ -20,7 +20,7 @@ public class NianTask extends CraftTask{
     //任务需要品
     private final ItemStack itemStack;
     //获取构建器
-    public NianTask(String name, String describe, ArrayList<CraftNeeded> NeededList, Material material) throws NullAcceptError {
+    public NianTask(String name, String describe, ArrayList<CraftNeeded> NeededList, Material material){
         this.name = name;
         this.describe = describe;
         this.NeededList = NeededList;
