@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +22,7 @@ public abstract class BaseTask implements Listener {
     public final String name;
     public final Material icon;
     public CameraTask[] cameraTasks;
-    private static final List<BaseTask> tasks = List.of();
+    private static final List<BaseTask> tasks = new ArrayList<>();
     public BaseTask(String name, @Nullable Material icon, @Nullable CameraTask... cameraTasks) {
         this.name = name;
         this.icon = JavaUse.nNqm(icon, Material.BEDROCK);
@@ -61,8 +62,9 @@ public abstract class BaseTask implements Listener {
             Bukkit.broadcastMessage("玩家" + completedBy.getName() + "刚刚拍摄了照片" + name);
             completedBy.getInventory().addItem(new ItemStack(Material.MAP)/*todo：拍摄照片*/);
             yamlConf.set(parentName + "." + name + ".completed", true);
-            yamlConf.set(parentName + "." + name + ".complete-players",
-                    Arrays.stream(getCompletePlayers()).map(UUID::toString).toList());
+            final var list = new ArrayList<>(Arrays.stream(getCompletePlayers()).toList());
+            list.add(completedBy.getUniqueId());
+            yamlConf.set(parentName + "." + name + ".complete-players", list.stream().map(UUID::toString));
             try {
                 yamlConf.save("./plugins/EcoError/task.yaml");
             } catch (Exception ignored) {}
