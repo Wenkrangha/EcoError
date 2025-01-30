@@ -44,7 +44,7 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
             };
             case "camera" -> switch (commandSender) {
                 case Player player -> {
-                    player.getInventory().addItem(PublicItem.get_camara());
+                    player.getInventory().addItem(PublicItem.get_camara(player));
                     yield true;
                 }
                 case CommandSender cs1 -> {
