@@ -17,19 +17,20 @@ public class BoardGuiClick implements Listener {
     public static void onclick(InventoryClickEvent event) throws IOException, InvalidConfigurationException {
         if (event.getView().getTitle().equalsIgnoreCase("紧急公告-神秘年兽")){
             YamlConfiguration yamlConfiguration = new YamlConfiguration();
+
             yamlConfiguration.load("./plugins/EcoError/player/" + event.getView().getPlayer().getUniqueId().toString() + ".yaml");
-            if (event.getInventory().getItem(event.getRawSlot()).equals(BoardItem.head_sure())) {
+            if (event.getCurrentItem().equals(BoardItem.head_sure())) {
                 yamlConfiguration.set("1","yes");
             }
-            if (event.getInventory().getItem(event.getRawSlot()).equals(BoardItem.get_book())) {
+            if (event.getCurrentItem().equals(BoardItem.get_book())) {
                 yamlConfiguration.set("2","yes");
                 event.getView().getPlayer().getInventory().addItem(PublicItem.get_book());
             }
-            if (event.getInventory().getItem(event.getRawSlot()).equals(BoardItem.get_camara())) {
+            if (event.getCurrentItem().equals(BoardItem.get_camara())) {
                 yamlConfiguration.set("3","yes");
                 event.getView().getPlayer().getInventory().addItem(PublicItem.get_camara());
             }
-            if (event.getInventory().getItem(event.getRawSlot()).equals(BoardItem.getsure()) && yamlConfiguration.getString("1").equalsIgnoreCase("yes") && yamlConfiguration.getString("2").equalsIgnoreCase("yes") && yamlConfiguration.getString("3").equalsIgnoreCase("yes")) {
+            if (event.getCurrentItem().equals(BoardItem.getsure()) && yamlConfiguration.getString("1").equalsIgnoreCase("yes") && yamlConfiguration.getString("2").equalsIgnoreCase("yes") && yamlConfiguration.getString("3").equalsIgnoreCase("yes")) {
                 yamlConfiguration.set("4","yes");
             }
             yamlConfiguration.save("./plugins/EcoError/player/" + event.getView().getPlayer().getUniqueId().toString() + ".yaml");

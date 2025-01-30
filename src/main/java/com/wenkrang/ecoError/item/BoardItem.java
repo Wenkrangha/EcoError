@@ -82,7 +82,7 @@ public class BoardItem {
         return itemStack;
     }
     public static ItemStack getsure() {
-        ItemStack itemStack = new ItemStack(Material.OBSERVER);
+        ItemStack itemStack = new ItemStack(Material.BARRIER);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setItemName("§f关闭§9界面");
         ArrayList<String> arrayList = new ArrayList<>();

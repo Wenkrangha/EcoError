@@ -1,5 +1,6 @@
 package com.wenkrang.ecoError.gui.board;
 
+import com.wenkrang.ecoError.EcoError;
 import com.wenkrang.ecoError.lib.Update;
 import com.wenkrang.ecoError.item.BoardItem;
 import org.bukkit.Bukkit;
@@ -8,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,16 +45,21 @@ public class BoardGUI {
         ArrayList<ItemStack> arrayList = new ArrayList<>();
         if (yamlConfiguration.getString("1").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.head_sure());
+            player.sendMessage("a");
         }
         if (yamlConfiguration.getString("2").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.get_book());
+            player.sendMessage("b");
         }
         if (yamlConfiguration.getString("3").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.get_camara());
+            player.sendMessage("c");
         }
         if (yamlConfiguration.getString("4").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.getsure());
+            player.sendMessage("d");
         }
+
 
         Update.updateBoardGUI(inventory,arrayList);
 
