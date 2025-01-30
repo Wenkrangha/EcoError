@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -20,13 +21,18 @@ public abstract class BaseTask implements Listener {
     public final String name;
     public final Material icon;
     public CameraTask[] cameraTasks;
+    private static final List<BaseTask> tasks = List.of();
     public BaseTask(String name, @Nullable Material icon, @Nullable CameraTask... cameraTasks) {
         this.name = name;
         this.icon = JavaUse.nNqm(icon, Material.BEDROCK);
         this.cameraTasks = cameraTasks;
+        tasks.add(this);
     }
     public void registerTask(JavaPlugin plugin) {
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    public static List<BaseTask> getAllTasks() {
+        return tasks;
     }
     public boolean isCompleted() {
         final var ret = new AtomicBoolean(true);
