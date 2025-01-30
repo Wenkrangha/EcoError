@@ -2,14 +2,12 @@ package com.wenkrang.ecoError;
 
 import com.wenkrang.ecoError.command.EcoCommand;
 import com.wenkrang.ecoError.event.board.BoardGuiClick;
-import com.wenkrang.ecoError.event.board.BoardInvClose;
 import com.wenkrang.ecoError.event.board.BoardPlayerJoin;
 import com.wenkrang.ecoError.event.board.FireworkDamage;
 import com.wenkrang.ecoError.lib.JavaUse;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.Objects;
 
 public final class EcoError extends JavaPlugin {
 
@@ -20,7 +18,6 @@ public final class EcoError extends JavaPlugin {
 
         JavaUse.let(getServer().getPluginManager(), i -> {
             i.registerEvents(new BoardPlayerJoin(), this);
-            i.registerEvents(new BoardInvClose(), this);
             i.registerEvents(new BoardGuiClick(), this);
             i.registerEvents(new FireworkDamage(), this);
         });

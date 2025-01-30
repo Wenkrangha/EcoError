@@ -81,10 +81,6 @@ public class EcoCommand implements CommandExecutor, TabCompleter {
                                       @Nonnull Command command,
                                       @Nonnull String s,
                                       @Nonnull String[] strings) {
-        return strings.length == 0 ?
-                commandSender instanceof Player ?
-                        List.of("announce", "board", "camera", "help")
-                        : List.of("announce", "help")
-                : List.of();
+        return List.of("announce", "board", "camera", "help");
     }
 }
