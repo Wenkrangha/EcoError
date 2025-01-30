@@ -20,7 +20,7 @@ public class NianTask extends CraftTask{
     //任务需要品
     private final ItemStack itemStack;
     //获取构建器
-    public NianTask(String name, String describe, ArrayList<CraftNeeded> NeededList, Material material, ItemStack itemStack) throws NullAcceptError {
+    public NianTask(String name, String describe, ArrayList<CraftNeeded> NeededList, Material material) throws NullAcceptError {
         this.name = name;
         this.describe = describe;
         this.NeededList = NeededList;
@@ -36,7 +36,7 @@ public class NianTask extends CraftTask{
             itemMeta.setLore(Spliter.splitEveryNChars(describe, 15));
             this.itemStack.setItemMeta(itemMeta);
         }else {
-            throw new NullAcceptError("空的任务参数");
+            throw new NullPointerException("空的任务参数");
         }
     }
     @Override
