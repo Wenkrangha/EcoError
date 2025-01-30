@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 @SuppressWarnings("all")
@@ -31,5 +32,10 @@ public class PublicItem {
         itemMeta.setLore(arrayList);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
+    }
+
+    @Nonnull
+    public static ItemStack getFirework() {
+        return null;/*todo*/
     }
 }
