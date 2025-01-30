@@ -43,19 +43,19 @@ public class BoardGUI {
         ArrayList<ItemStack> arrayList = new ArrayList<>();
         if (yamlConfiguration.getString("1").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.head_sure());
-            player.sendMessage("a");
+
         }
         if (yamlConfiguration.getString("2").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.get_book());
-            player.sendMessage("b");
+
         }
         if (yamlConfiguration.getString("3").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.get_camara());
-            player.sendMessage("c");
+
         }
         if (yamlConfiguration.getString("4").equalsIgnoreCase("no")){
             arrayList.add(BoardItem.getsure());
-            player.sendMessage("d");
+
         }
 
 

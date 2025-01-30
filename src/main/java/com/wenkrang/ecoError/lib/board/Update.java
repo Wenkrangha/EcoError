@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Update {
     public static void updateBoardGUI(Inventory inventory, ArrayList<ItemStack> arrayList) {
-        for (int i = 12;i < arrayList.size();i++) {
+        for (int i = 12;i - 12 < arrayList.size();i++) {
             inventory.setItem(i, arrayList.get(i - 12));
         }
     }
