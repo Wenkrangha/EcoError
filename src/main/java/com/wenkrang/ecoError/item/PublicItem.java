@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +64,10 @@ public class PublicItem {
         itemStack.setItemMeta(itemMeta);
 
         return itemStack;
+    }
+
+    @Nonnull
+    public static ItemStack getFirework() {
+        return null;/*todo*/
     }
 }
