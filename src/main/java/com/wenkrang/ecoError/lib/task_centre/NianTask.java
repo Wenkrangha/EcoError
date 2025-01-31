@@ -1,11 +1,12 @@
-package com.wenkrang.ecoError.lib.TaskCentre;
+package com.wenkrang.ecoError.lib.task_centre;
 
+import com.wenkrang.ecoError.lib.JavaUse;
 import com.wenkrang.ecoError.lib.Spliter;
-import net.md_5.bungee.api.chat.hover.content.Item;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 public class NianTask extends CraftTask{
@@ -20,24 +21,21 @@ public class NianTask extends CraftTask{
     //任务需要品
     private final ItemStack itemStack;
     //获取构建器
-    public NianTask(String name, String describe, ArrayList<CraftNeeded> NeededList, Material material){
-        this.name = name;
-        this.describe = describe;
-        this.NeededList = NeededList;
-        this.material = material;
+    public NianTask(@Nonnull String name,
+                    @Nonnull String describe,
+                    @Nonnull ArrayList<CraftNeeded> NeededList,
+                    @Nonnull Material material) {
+        //包含空检查
+        this.name = JavaUse.nn(name);
+        this.describe = JavaUse.nn(describe);
+        this.NeededList = JavaUse.nn(NeededList);
+        this.material = JavaUse.nn(material);
 
-        if (name != null &&
-                describe != null &&
-                material != null &&
-                NeededList != null) {
-            this.itemStack = new ItemStack(material);
-            ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName(name);
-            itemMeta.setLore(Spliter.splitEveryNChars(describe, 15));
-            this.itemStack.setItemMeta(itemMeta);
-        }else {
-            throw new NullPointerException("空的任务参数");
-        }
+        this.itemStack = new ItemStack(material);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(name);
+        itemMeta.setLore(Spliter.splitEveryNChars(describe, 15));
+        this.itemStack.setItemMeta(itemMeta);
     }
     @Override
     public String getName() {

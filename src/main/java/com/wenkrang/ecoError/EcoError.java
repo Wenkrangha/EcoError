@@ -4,8 +4,8 @@ import com.wenkrang.ecoError.command.EcoCommand;
 import com.wenkrang.ecoError.event.board.BoardGuiClick;
 import com.wenkrang.ecoError.event.board.BoardPlayerJoin;
 import com.wenkrang.ecoError.event.board.FireworkDamage;
-import com.wenkrang.ecoError.event.task.Task1;
 import com.wenkrang.ecoError.lib.JavaUse;
+import com.wenkrang.ecoError.lib.task_centre.TaskRegister;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,7 +26,7 @@ public final class EcoError extends JavaPlugin {
         };
         pluginManagerConsumer.accept(getServer().getPluginManager());
 
-        new Task1().registerTask(this);
+        TaskRegister.registerTask();
 
         File file = new File("./plugins/EcoError/player/");
         file.mkdirs();

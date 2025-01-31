@@ -7,31 +7,23 @@ import org.bukkit.Material;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 
-public class Task1 extends BaseTask {
-    public Task1() {
-        super("年兽异样", Material.TNT_MINECART);
-        cameraTasks = new CameraTask[]{
-                new CameraTask("新年鞭炮", "年兽异样"),
-                new CameraTask("这是什么？", "年兽异样")
-        };
-    }
-
+//此处null修改为实际描述
+public class TaskListener1 implements Listener {
     @EventHandler
     public void onTask11Complete(@Nonnull CraftItemEvent event) {
+        final var photo11 = PublicItem.get_photo("新年鞭炮", "null");
         if (event.getRecipe().getResult() == PublicItem.getFirework()) {
-            if (Arrays.stream(cameraTasks[0].getCompletePlayers())
-                    .noneMatch(uuid -> uuid.equals(event.getWhoClicked().getUniqueId()))
-            ) cameraTasks[0].complete((Player) event.getWhoClicked());
+            if (!event.getWhoClicked().getInventory().contains(photo11))
+                event.getWhoClicked().getInventory().addItem(photo11);
         }
     }
 
@@ -39,26 +31,27 @@ public class Task1 extends BaseTask {
     public void onTask12Complete(@Nonnull PlayerInteractEvent event) {
         if (event.getItem() == PublicItem.get_camara(event.getPlayer())) {
             if (event.getPlayer()
-                    .getNearbyEntities(8, 8, 8)
-                    .stream().anyMatch(i -> i.getType() == EntityType.ITEM
-                    && ((Item)i).getItemStack() == PublicItem.getFirework()) &&
+                    //获取周围实体
+                    .getNearbyEntities(8, 8, 8).stream()
+                    //检测是否有烟花掉落物
+                    .anyMatch(i -> i.getType() == EntityType.ITEM
+                            && ((Item)i).getItemStack() == PublicItem.getFirework()) &&
                     event.getPlayer()
-                            .getNearbyEntities(8, 8, 8)
-                            .stream().anyMatch(i -> i.getType() == EntityType.ITEM
+                            //获取周围实体
+                            .getNearbyEntities(8, 8, 8).stream()
+                            //检测是否有下界之星掉落物
+                            .anyMatch(i -> i.getType() == EntityType.ITEM
                                     && ((Item)i).getItemStack().getType() == Material.NETHER_STAR)) {
                 ((Enderman) event.getPlayer().getWorld().spawnEntity(
-                        event.getPlayer()
-                                .getNearbyEntities(8, 8, 8)
-                                .getFirst()
-                                .getLocation(),
+                        event.getPlayer().getLocation(),
                         EntityType.ENDERMAN
                 )).setCarriedMaterial(JavaUse.nn(PublicItem.getFirework().getData()));
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        cameraTasks[1].complete(event.getPlayer());
+                        PublicItem.get_photo("这是什么？", "null");
                     }
-                }.runTaskLater(JavaPlugin.getPlugin(EcoError.class), 5000);
+                }.runTaskLaterAsynchronously(JavaPlugin.getPlugin(EcoError.class), 5000);
             }
         }
     }

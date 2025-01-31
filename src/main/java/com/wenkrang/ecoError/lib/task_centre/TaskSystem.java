@@ -1,4 +1,4 @@
-package com.wenkrang.ecoError.lib.TaskCentre;
+package com.wenkrang.ecoError.lib.task_centre;
 
 import com.wenkrang.ecoError.PublicData;
 import com.wenkrang.ecoError.lib.Fireworks;
@@ -24,7 +24,7 @@ public class TaskSystem {
         nianTasks.add(nianTask);
     }
 
-    public static void Complete(Player player, NianTask nianTask) throws IOException, InvalidConfigurationException {
+    public static void complete(Player player, NianTask nianTask) throws IOException, InvalidConfigurationException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
         yamlConfiguration.load(PublicData.yamlfile(player));
         yamlConfiguration.set("complete-" + nianTask.getName(), true);
