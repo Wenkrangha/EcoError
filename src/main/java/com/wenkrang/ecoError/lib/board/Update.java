@@ -1,6 +1,5 @@
 package com.wenkrang.ecoError.lib.board;
 
-import com.wenkrang.ecoError.lib.TaskCentre.CraftTask;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 

@@ -1,8 +1,8 @@
-package com.wenkrang.ecoError.lib.TaskCentre;
+package com.wenkrang.ecoError.lib.task_centre;
 
 import org.bukkit.inventory.ItemStack;
 
-public class NianNeeded extends CraftNeeded{
+public class NianNeeded extends CraftNeeded {
 
     //任务的需要提交物
     private final ItemStack itemStack;
@@ -14,6 +14,6 @@ public class NianNeeded extends CraftNeeded{
 
     @Override
     public ItemStack getItemStack() {
-        return null;
+        return itemStack;
     }
 }

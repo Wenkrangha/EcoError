@@ -1,4 +1,4 @@
-package com.wenkrang.ecoError.lib.TaskCentre;
+package com.wenkrang.ecoError.lib.task_centre;
 
 import org.bukkit.inventory.ItemStack;
 
